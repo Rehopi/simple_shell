@@ -26,4 +26,12 @@ int _builtin_(char **path, char *cmd);
 char *_findpath_(char **env);
 char **_strtok_(char *line, char token);
 
+#define BUFFER_SIZE 1024
+
+char *A_sh_line_input(char *prompt);
+char **A_sh_split_str(char *str);
+void A_sh_print(char **str);
+void reallocate(int j, int buffersize, char *arv);
+int A_sh_execute(char **args);
+
 #endif

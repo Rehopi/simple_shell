@@ -49,7 +49,7 @@ void A_sh_loop(void)
 	int status;
 
 	do {
-		printf("\033[1;33m┌───(\033[1;30mAdetayo @ A-sh\033[1;33m)-[\033[1;35mI'd rather not let you know your current working directory\033[1;33m]\n");
+		printf("\033[1;33m┌───(\033[1;30mUser @ A-sh\033[1;33m)-[\033[1;35mCurrent Working Dir\033[1;33m]\n");
 		printf("└──$\033[0m ");
 
 		input = A_sh_line_input("");
@@ -264,20 +264,6 @@ int main(int ac, char **av, char **env)
 
 	printf("\n");
 	A_sh_loop();
-	printf("\n\n                                            ╔═══════════════════════════════════════════╗\n");
-	printf("                                            ║        \033[1;36mExiting A-sh by Adetayo\033[0m            ║\n");
-	printf("                                            ║-------------------------------------------║\n");
-	printf("                                            ║Sorry, I did'nt allow you to see your CWD  ║\n");
-	printf("                                            ║Maybe I don't know how fetch it            ║\n");
-	printf("                                            ║Well, I do know how, just that,            ║\n");
-	printf("                                            ║doing it is messing with my mind           ║\n");
-	printf("                                            ║-------------------------------------------║\n");
-	printf("                                            ║Also, sorry for using similar prompt as zsh║\n");
-	printf("                                            ║I'm going to come up with my own too!      ║\n");
-	printf("                                            ║               Bye for now!!!              ║\n");
-	printf("                                            ╚═══════════════════════════════════════════╝\n");
-
-	exit(0);
 
 
 	return (0);

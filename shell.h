@@ -20,11 +20,8 @@ void _echo_(char *str);
 void _strcat_(char *dest, char *src);
 void _strcpy_(char *dest, char *src);
 void _notfound_(char *av, int i, char *array_token);
-int _strcmp_(char *s1, char *s2);
-int _strlen_(char *s);
 int _builtin_(char **path, char *cmd);
 char *_findpath_(char **env);
-char **_strtok_(char *line, char token);
 
 #define BUFFER_SIZE 1024
 

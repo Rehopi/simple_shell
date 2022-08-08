@@ -16,12 +16,12 @@
 
 int A_sh_execute(char **args)
 {
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
 
-	if (pid == 0)	// Child Process
+	if (pid == 0)
 	{
 		if (execve(args[0], args, __environ) == -1)
 		{
@@ -29,13 +29,13 @@ int A_sh_execute(char **args)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else if (pid < 0) // Forking Error
+	else if (pid < 0)
 	{
 		perror("A-sh");
 	}
-	else	// Parent Process
+	else
 	{
-		wpid = wait(&status);
+		wait(&status);
 	}
 
 	return 1;
@@ -250,17 +250,10 @@ char *A_sh_line_input(char *prompt)
  *
  * Return: int (0 on success)
  */
-int main(int ac, char **av, char **env)
+int main()
 {
 
-	// read
 
-	// printf("Command Line Args: %d\n\n", ac);
-	// A_sh_print(av);
-	// exit(0);
-
-
-	// printf("╔ ═ ╗ ╚ ╝  ┌─┐┌─┼─┘ ║\n");
 
 	printf("\n");
 	A_sh_loop();

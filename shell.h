@@ -43,7 +43,7 @@ int A_sh_execute(char **args);
 int A_sh_launch(char **args);
 void A_sh_toggle(short *value);
 
-void *check_and_realloc(void *buf, int *bufsize, int i, size_t size, int incby);
+void *check_and_realloc(void *, int *, int, size_t, int);
 int iswhitespace(char c);
 int escape_quote(char c, short *insidequote, short *insideSquote);
 void check_quotes(char c, char quote, int quoteopened, short *quotetoggle);
@@ -56,8 +56,8 @@ int A_sh_exit(char **args);
 int A_sh_echo(char **args);
 int A_sh_cd(char **args);
 int A_sh_printenv(char **args);
-int (*get_builtin_function(char * cmd)) (char **);
-int (*get_builtin_function_inmap(char * cmd)) (char **);
+int (*get_builtin_function(char *cmd)) (char **);
+int (*get_builtin_function_inmap(char *cmd)) (char **);
 
 /* A_sh Variable for all Builtin Commands */
 extern  const char * const builtin_commands[];
@@ -67,15 +67,16 @@ extern int (* const builtin_functions[]) (char **);
 
 
 /**
- * builtin_command_function_map - As Name implies
+ * struct builtin_command_function_map - As Name implies
  * A_sh Struct for Builtin Command-Function map
  *
  * @command: Builtin Command
  * @function: Mapped function
  */
-typedef struct builtin_command_function_map {
-    char *command;
-    int (*function) (char **);
+typedef struct builtin_command_function_map
+{
+	char *command;
+	int (*function)(char **);
 } builtinfuns_t;
 
 /* A_sh Array of Builtin Command-Function map */

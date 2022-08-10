@@ -12,11 +12,8 @@ int _builtin_(char **path, char *cmd)
 
 	for (i = 0; path[i]; i++)
 	{
-		if (strcmp(cmd, path[i])== 0)
+		if (strcmp(cmd, path[i]) == 0)
 			return (1);
 	}
 	return (0);
 }
-
-
-	

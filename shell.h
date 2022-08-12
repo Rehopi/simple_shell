@@ -43,7 +43,7 @@ int A_sh_execute(char **args);
 int A_sh_launch(char **args);
 void A_sh_toggle(short *value);
 
-void print_error(char *command, char *program_name, int error_count)
+void print_error(char *command, char *program_name, int error_count);
 void *check_and_realloc(void *, int *, int, size_t, int);
 int iswhitespace(char c);
 int escape_quote(char c, short *insidequote, short *insideSquote);

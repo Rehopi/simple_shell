@@ -28,7 +28,7 @@ char *A_sh_line_input(int *iseof)
 			return (buffer);
 		}
 
-		if (c == EOF || c == '\n')
+		if (c == '\n')
 		{
 			if (quoteopened)
 				printf("dquote>");

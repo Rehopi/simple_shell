@@ -43,17 +43,20 @@ void A_sh_loop(void)
 	int status = 1;
 
 	do {
-		A_sh_prompt();
 
+		if (isatty(fileno(stdin)))
+			A_sh_prompt();
+			
 		input = A_sh_line_input(&status);
+
 		args = A_sh_split_str(input);
 		if (args)
 			status = A_sh_execute(args);
 
+		printf("%s", input);
+
 		free(input);
 		free(args);
-
-		printf("\n");
 	} while (status);
 
 }
@@ -63,8 +66,20 @@ void A_sh_loop(void)
  *
  * Return: int (0 on success)
  */
-int main(void)
+int main(int ac, char **av)
 {
+	char **args;
+
+	if (ac > 1)
+	{
+		args = malloc(sizeof(char *) * (ac + 1));
+		memcpy(args, av, sizeof(char *) * ac);
+		args[ac] = NULL;
+		A_sh_print(args + 1);
+
+		A_sh_execute(args + 1);
+		return (0);
+	}
 
 	printf("\n");
 	A_sh_loop();

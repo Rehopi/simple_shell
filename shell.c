@@ -39,7 +39,7 @@ void A_sh_prompt(void)
 void A_sh_loop(char *p_name)
 {
 	char *input;
-	char **args;
+	char **args = NULL;
 	int status = 1;
 	int error_count = 1;
 	int is_interactive = 1;
@@ -55,9 +55,17 @@ void A_sh_loop(char *p_name)
 
 		if (1)
 		{
-			args = malloc(sizeof(char *) * 2);
-			args[0] = input;
-			args[1] = NULL;
+
+			if (input[0])
+			{
+				args = malloc(sizeof(char *) * 2);
+				args[0] = input;
+				args[1] = NULL;
+			}
+			else
+			{
+				status = 0;
+			}
 		}
 		else
 		{

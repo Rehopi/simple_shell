@@ -11,15 +11,16 @@
  */
 int A_sh_execute(char **args, int *error_count, char *p_name)
 {
+	/*
+	* int (*builtin)(char **);
+	*
+	* builtin = get_builtin_function(args[0]);
+	*
+	* if (builtin)
+	*	return (builtin(args));
+	*/
 
-	int (*builtin)(char **);
-
-	builtin = get_builtin_function(args[0]);
-
-	if (builtin)
-		return (builtin(args));
-
-	args = resolve_file_path(args);
+	/* args = resolve_file_path(args); */
 
 	return (A_sh_launch(args, error_count, p_name));
 

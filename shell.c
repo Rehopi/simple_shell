@@ -55,7 +55,7 @@ void A_sh_loop(char *p_name)
 
 		input = A_sh_line_input(&status);
 
-		if (1)
+		if (0)
 		{
 
 			if (input[0])

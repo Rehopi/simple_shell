@@ -50,7 +50,16 @@ void A_sh_loop(char *p_name)
 
 		input = A_sh_line_input(&status);
 
-		args = A_sh_split_str(input);
+		if (1)
+		{
+			args = malloc(sizeof(char *) * 2);
+			args[0] = input;
+			args[1] = NULL;
+		}
+		else
+		{
+			args = A_sh_split_str(input);
+		}
 		if (args)
 			status = A_sh_execute(args, &error_count, p_name);
 

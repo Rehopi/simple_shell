@@ -12,6 +12,7 @@
 int A_sh_execute(char **args, int *error_count, char *p_name)
 {
 	/*
+	* int found
 	* int (*builtin)(char **);
 	*
 	* builtin = get_builtin_function(args[0]);
@@ -20,7 +21,7 @@ int A_sh_execute(char **args, int *error_count, char *p_name)
 	*	return (builtin(args));
 	*/
 
-	/* args = resolve_file_path(args); */
+	/* args = resolve_file_path(args, *found);*/
 
 	return (A_sh_launch(args, error_count, p_name));
 

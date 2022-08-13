@@ -42,13 +42,16 @@ void A_sh_loop(char *p_name)
 	char **args;
 	int status = 1;
 	int error_count = 1;
+	int is_interactive = 1;
 
 	do {
 
 		if (isatty(fileno(stdin)))
 			A_sh_prompt();
+		else
+			is_interactive = 0;
 
-		input = A_sh_line_input(&status);
+		input = A_sh_line_input();
 
 		if (1)
 		{
@@ -65,7 +68,7 @@ void A_sh_loop(char *p_name)
 
 		free(input);
 		free_memory(args);
-	} while (status);
+	} while (status && is_interactive);
 
 }
 

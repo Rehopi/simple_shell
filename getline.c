@@ -4,11 +4,9 @@
 /**
  * A_sh_line_input - Readline from stdin
  *
- * @iseof: Status update on EOF
- *
  * Return: char* (read string)
  */
-char *A_sh_line_input(int *iseof)
+char *A_sh_line_input()
 {
 	char *buffer;
 	int c, i = 0, bufsize = BUFFER_SIZE;
@@ -24,7 +22,6 @@ char *A_sh_line_input(int *iseof)
 		if (c == EOF)
 		{
 			buffer[i] = '\0';
-			*iseof = 0;
 			return (buffer);
 		}
 

@@ -34,7 +34,7 @@ char *_findpath_(char **env);
 
 
 
-char *A_sh_line_input();
+char *A_sh_line_input(int *iseof);
 char **A_sh_split_str(char *str);
 char **A_sh_plane_split_str(char *str, char delim);
 void A_sh_print(char **str);

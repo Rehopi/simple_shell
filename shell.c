@@ -51,7 +51,7 @@ void A_sh_loop(char *p_name)
 		else
 			is_interactive = 0;
 
-		input = A_sh_line_input();
+		input = A_sh_line_input(&status);
 
 		if (1)
 		{
@@ -61,10 +61,6 @@ void A_sh_loop(char *p_name)
 				args = malloc(sizeof(char *) * 2);
 				args[0] = input;
 				args[1] = NULL;
-			}
-			else
-			{
-				status = 0;
 			}
 		}
 		else

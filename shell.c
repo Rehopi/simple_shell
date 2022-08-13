@@ -38,9 +38,8 @@ void A_sh_prompt(void)
 /**
  * A_sh_loop - Main Program Loop
  * @p_name: Program Name
- * @env: Environment Variables
  */
-void A_sh_loop(char *p_name, char **env)
+void A_sh_loop(char *p_name)
 {
 	char *input;
 	char **args;
@@ -74,7 +73,7 @@ void A_sh_loop(char *p_name, char **env)
 			args = A_sh_split_str(input);
 		}
 		if (args)
-			status = A_sh_execute(args, &error_count, p_name, env);
+			status = A_sh_execute(args, &error_count, p_name);
 
 		free(input);
 		free_memory(args);
@@ -87,11 +86,10 @@ void A_sh_loop(char *p_name, char **env)
  *
  * @ac: Argument Count
  * @av: Program Arguments
- * @env: Environment Variables
  *
  * Return: int (0 on success)
  */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
 	char **args;
 	int error = 0;
@@ -103,11 +101,11 @@ int main(int ac, char **av, char **env)
 		args[ac] = NULL;
 		A_sh_print(args + 1);
 
-		A_sh_execute(args + 1, &error, av[0], env);
+		A_sh_execute(args + 1, &error, av[0]);
 		return (0);
 	}
 
-	A_sh_loop(av[0], env);
+	A_sh_loop(av[0]);
 
 
 	return (0);

@@ -20,16 +20,18 @@
  */
 void A_sh_prompt(void)
 {
-	char *cwd = NULL;
-
-	printf(
-		"\033[1;33m┌───(\033[1;30m%s @ A-sh\033[1;33m)-",
-		getenv("USER")
-	);
-	printf("[\033[1;35m%s\033[1;33m]\n", getcwd(cwd, sizeof(char) * 100));
-	printf("└─$\033[0m ");
-
-	free(cwd);
+	/* char *cwd = NULL;
+	*
+	* printf(
+	*	"\033[1;33m┌───(\033[1;30m%s @ A-sh\033[1;33m)-",
+	*	getenv("USER")
+	* );
+	* printf("[\033[1;35m%s\033[1;33m]\n", getcwd(cwd, sizeof(char) * 100));
+	* printf("└─$\033[0m ");
+	*
+	* free(cwd);
+	*/
+	printf("#cisfun$ ");
 }
 
 /**

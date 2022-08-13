@@ -34,29 +34,28 @@ void A_sh_prompt(void)
 
 /**
  * A_sh_loop - Main Program Loop
- *
+ * @p_name: Program Name
  */
-void A_sh_loop(void)
+void A_sh_loop(char *p_name)
 {
 	char *input;
 	char **args;
 	int status = 1;
+	int error_count = 1;
 
 	do {
 
 		if (isatty(fileno(stdin)))
 			A_sh_prompt();
-			
+
 		input = A_sh_line_input(&status);
 
 		args = A_sh_split_str(input);
 		if (args)
-			status = A_sh_execute(args);
-
-		printf("%s", input);
+			status = A_sh_execute(args, &error_count, p_name);
 
 		free(input);
-		free(args);
+		free_memory(args);
 	} while (status);
 
 }
@@ -64,11 +63,15 @@ void A_sh_loop(void)
 /**
  * main - Main Program (A simple Shell - A_sh)
  *
+ * @ac: Argument Count
+ * @av: Program Arguments
+ *
  * Return: int (0 on success)
  */
 int main(int ac, char **av)
 {
 	char **args;
+	int error = 0;
 
 	if (ac > 1)
 	{
@@ -77,12 +80,11 @@ int main(int ac, char **av)
 		args[ac] = NULL;
 		A_sh_print(args + 1);
 
-		A_sh_execute(args + 1);
+		A_sh_execute(args + 1, &error, av[0]);
 		return (0);
 	}
 
-	printf("\n");
-	A_sh_loop();
+	A_sh_loop(av[0]);
 
 
 	return (0);

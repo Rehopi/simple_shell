@@ -4,10 +4,12 @@
  * A_sh_execute - Execute
  *
  * @args: command
+ * @error_count: Error Count
+ * @p_name: Program Name
  *
  * Return: int
  */
-int A_sh_execute(char **args)
+int A_sh_execute(char **args, int *error_count, char *p_name)
 {
 
 	int (*builtin)(char **);
@@ -19,7 +21,7 @@ int A_sh_execute(char **args)
 
 	args = resolve_file_path(args);
 
-	return (A_sh_launch(args));
+	return (A_sh_launch(args, error_count, p_name));
 
 }
 
@@ -27,10 +29,12 @@ int A_sh_execute(char **args)
  * A_sh_launch - Launch a Program
  *
  * @args: Arguments
+ * @error_count: Error counts
+ * @p_name: Program Name
  *
  * Return: int
  */
-int A_sh_launch(char **args)
+int A_sh_launch(char **args, int *error_count, char *p_name)
 {
 	pid_t pid;
 	int status;
@@ -41,7 +45,7 @@ int A_sh_launch(char **args)
 	{
 		if (execve(args[0], args, __environ) == -1)
 		{
-			perror("Error");
+			print_error(args[0], p_name, *error_count);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -52,6 +56,9 @@ int A_sh_launch(char **args)
 	else
 	{
 		wait(&status);
+
+		if (status != 0)
+			(*error_count)++;
 	}
 
 	return (1);

@@ -39,8 +39,9 @@ char **A_sh_split_str(char *str);
 char **A_sh_plane_split_str(char *str, char delim);
 void A_sh_print(char **str);
 void A_sh_prompt(void);
-int A_sh_execute(char **args);
-int A_sh_launch(char **args);
+void A_sh_loop(char *p_name);
+int A_sh_execute(char **args, int *error_count, char *p_name);
+int A_sh_launch(char **args, int *error_count, char *p_name);
 void A_sh_toggle(short *value);
 
 void print_error(char *command, char *program_name, int error_count);

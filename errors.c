@@ -11,5 +11,8 @@
 */
 void print_error(char *command, char *program_name, int error_count)
 {
-	fprintf(stderr, "%s: %d: %s: not found", program_name, error_count, command);
+	fprintf(
+		stderr, "%s: %d: %s: not found\n",
+		program_name, error_count, command
+	);
 }

@@ -20,7 +20,8 @@
  */
 void A_sh_prompt(void)
 {
-	/* char *cwd = NULL;
+	/*
+	* char *cwd = NULL;
 	*
 	* printf(
 	*	"\033[1;33m┌───(\033[1;30m%s @ A-sh\033[1;33m)-",
@@ -37,8 +38,9 @@ void A_sh_prompt(void)
 /**
  * A_sh_loop - Main Program Loop
  * @p_name: Program Name
+ * @env: Environment Variables
  */
-void A_sh_loop(char *p_name)
+void A_sh_loop(char *p_name, char **env)
 {
 	char *input;
 	char **args;
@@ -72,7 +74,7 @@ void A_sh_loop(char *p_name)
 			args = A_sh_split_str(input);
 		}
 		if (args)
-			status = A_sh_execute(args, &error_count, p_name);
+			status = A_sh_execute(args, &error_count, p_name, env);
 
 		free(input);
 		free_memory(args);
@@ -85,10 +87,11 @@ void A_sh_loop(char *p_name)
  *
  * @ac: Argument Count
  * @av: Program Arguments
+ * @env: Environment Variables
  *
  * Return: int (0 on success)
  */
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	char **args;
 	int error = 0;
@@ -100,11 +103,11 @@ int main(int ac, char **av)
 		args[ac] = NULL;
 		A_sh_print(args + 1);
 
-		A_sh_execute(args + 1, &error, av[0]);
+		A_sh_execute(args + 1, &error, av[0], env);
 		return (0);
 	}
 
-	A_sh_loop(av[0]);
+	A_sh_loop(av[0], env);
 
 
 	return (0);

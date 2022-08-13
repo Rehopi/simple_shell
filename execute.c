@@ -6,10 +6,11 @@
  * @args: command
  * @error_count: Error Count
  * @p_name: Program Name
+ * @env: Environment Variables
  *
  * Return: int
  */
-int A_sh_execute(char **args, int *error_count, char *p_name)
+int A_sh_execute(char **args, int *error_count, char *p_name, char **env)
 {
 	/*
 	* int found
@@ -23,7 +24,7 @@ int A_sh_execute(char **args, int *error_count, char *p_name)
 
 	/* args = resolve_file_path(args, *found);*/
 
-	return (A_sh_launch(args, error_count, p_name));
+	return (A_sh_launch(args, error_count, p_name, env));
 
 }
 
@@ -33,10 +34,11 @@ int A_sh_execute(char **args, int *error_count, char *p_name)
  * @args: Arguments
  * @error_count: Error counts
  * @p_name: Program Name
+ * @env: Environment Variables
  *
  * Return: int
  */
-int A_sh_launch(char **args, int *error_count, char *p_name)
+int A_sh_launch(char **args, int *error_count, char *p_name, char **env)
 {
 	pid_t pid;
 	int status;
@@ -45,7 +47,7 @@ int A_sh_launch(char **args, int *error_count, char *p_name)
 
 	if (pid == 0)
 	{
-		if (execve(args[0], args, __environ) == -1)
+		if (execve(args[0], args, env) == -1)
 		{
 			perror(p_name);
 			exit(EXIT_FAILURE);

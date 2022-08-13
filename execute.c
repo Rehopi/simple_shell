@@ -47,7 +47,7 @@ int A_sh_launch(char **args, int *error_count, char *p_name)
 	{
 		if (execve(args[0], args, __environ) == -1)
 		{
-			print_error(args[0], p_name, *error_count);
+			perror(p_name);
 			exit(EXIT_FAILURE);
 		}
 	}
